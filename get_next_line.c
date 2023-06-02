@@ -6,7 +6,7 @@
 /*   By: festeve- <festeve-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 11:08:47 by festeve-          #+#    #+#             */
-/*   Updated: 2023/06/02 13:05:19 by festeve-         ###   ########.fr       */
+/*   Updated: 2023/06/02 13:08:40 by festeve-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,17 @@ static char	*read_and_append_to_backup(int fd, char *buffer, char *backup)
 		buffer[read_status] = '\0';
 		if (!backup)
 			backup = ft_strdup("");
-		prev_backup = backup;
-		backup = ft_strjoin(prev_backup, buffer);
-		if (!backup)
+		else
 		{
+			prev_backup = backup;
+			backup = ft_strjoin(prev_backup, buffer);
 			free(prev_backup);
 			prev_backup = NULL;
-			return (NULL);
+			if (!backup)
+				return (NULL);
 		}
 		if (ft_strchr(buffer, '\n'))
-			break;
-		free(prev_backup);
-		prev_backup = NULL;
+			break ;
 	}
 	return (backup);
 }
