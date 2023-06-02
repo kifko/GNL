@@ -6,15 +6,15 @@
 /*   By: festeve- <festeve-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:32:17 by festeve-          #+#    #+#             */
-/*   Updated: 2023/05/23 13:27:30 by festeve-         ###   ########.fr       */
+/*   Updated: 2023/06/02 11:24:42 by festeve-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "get_next_line.h"
+#include "get_next_line.h"
 
-size_t ft_strlen(const char *str)
+size_t	ft_strlen(const char *str)
 {
-	size_t len;
+	size_t	len;
 
 	len = 0;
 	while (str[len] != 0)
@@ -22,7 +22,8 @@ size_t ft_strlen(const char *str)
 	return (len);
 }
 
-char	*ft_substr(const char *str_src, unsigned int start_index, size_t substr_len)
+char	*ft_substr(const char *str_src,
+			unsigned int start_index, size_t substr_len)
 {
 	size_t	src_index;
 	size_t	dst_index;
@@ -48,9 +49,9 @@ char	*ft_substr(const char *str_src, unsigned int start_index, size_t substr_len
 	return (str_substr);
 }
 
-char	*ft_strchr(const char *str,int chr)
+char	*ft_strchr(const char *str, int chr)
 {
-	char *res;
+	char	*res;
 
 	while (*str != '\0')
 	{
@@ -86,7 +87,7 @@ char	*ft_strdup(const char *src)
 	return (strdup);
 }
 
-char	*ft_strjoin(const char *str1, const char *str2)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
 	int		index1;
 	int		index2;
@@ -94,17 +95,17 @@ char	*ft_strjoin(const char *str1, const char *str2)
 
 	index1 = 0;
 	index2 = 0;
-	res = (char *)malloc(sizeof(char) * (ft_strlen(str1) + ft_strlen(str2) + 1));
+	res = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (res == NULL)
 		return (NULL);
-	while (str1[index1] != '\0')
+	while (s1[index1] != '\0')
 	{
-		res[index1] = str1[index1];
+		res[index1] = s1[index1];
 		index1++;
 	}
-	while (str2[index2] != '\0')
+	while (s2[index2] != '\0')
 	{
-		res[index1 + index2] = str2[index2];
+		res[index1 + index2] = s2[index2];
 		index2++;
 	}
 	res[index1 + index2] = '\0';
