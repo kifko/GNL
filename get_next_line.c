@@ -6,7 +6,7 @@
 /*   By: festeve- <festeve-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 11:08:47 by festeve-          #+#    #+#             */
-/*   Updated: 2023/06/02 12:00:24 by festeve-         ###   ########.fr       */
+/*   Updated: 2023/06/02 13:05:19 by festeve-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,16 @@ static char	*read_and_append_to_backup(int fd, char *buffer, char *backup)
 			backup = ft_strdup("");
 		prev_backup = backup;
 		backup = ft_strjoin(prev_backup, buffer);
+		if (!backup)
+		{
+			free(prev_backup);
+			prev_backup = NULL;
+			return (NULL);
+		}
+		if (ft_strchr(buffer, '\n'))
+			break;
 		free(prev_backup);
 		prev_backup = NULL;
-		if (ft_strchr(buffer, '\n'))
-			break ;
 	}
 	return (backup);
 }
@@ -49,17 +55,14 @@ static char	*extract_current_line(char *line)
 	char	*next_line;
 
 	count = 0;
+	next_line = NULL;
 	while (line[count] != '\n' && line[count] != '\0')
 			count++;
-	if (line[count] == '\0' || line[1] == '\0')
-		return (0);
-	next_line = ft_substr(line, count + 1, ft_strlen(line) - count);
-	if (*next_line == '\0')
-	{
-		free(next_line);
-		next_line = NULL;
-	}
-	line[count + 1] = '\0';
+	if (line[count] == '\0' || line[count + 1] == '\0')
+		return (NULL);
+	next_line = ft_substr(line, count + 1, ft_strlen(line) - count - 1);
+	if (next_line)
+		next_line[count] = '\0';
 	return (next_line);
 }
 
