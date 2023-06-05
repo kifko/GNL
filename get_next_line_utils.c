@@ -6,7 +6,7 @@
 /*   By: festeve- <festeve-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:32:17 by festeve-          #+#    #+#             */
-/*   Updated: 2023/06/02 11:24:42 by festeve-         ###   ########.fr       */
+/*   Updated: 2023/06/02 13:18:59 by festeve-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strlen(const char *str)
 {
-	size_t	len;
+	int	len;
 
 	len = 0;
 	while (str[len] != 0)
@@ -22,92 +22,136 @@ size_t	ft_strlen(const char *str)
 	return (len);
 }
 
-char	*ft_substr(const char *str_src,
-			unsigned int start_index, size_t substr_len)
+char	*ft_substr(char *str_src, unsigned int start, size_t substrlen)
 {
-	size_t	src_index;
-	size_t	dst_index;
-	char	*str_substr;
+	size_t	i;
+	size_t	j;
+	char	*dest;
 
+	i = 0;
+	j = start;
 	if (!str_src)
 		return (NULL);
-	str_substr = (char *)malloc(sizeof(*str_src) * (substr_len + 1));
-	if (str_substr == 0 || !str_substr)
-		return (NULL);
-	src_index = 0;
-	dst_index = 0;
-	while (str_src[src_index])
-	{
-		if (src_index >= start_index && dst_index < substr_len)
-		{
-			str_substr[dst_index] = str_src[src_index];
-			dst_index++;
-		}
-		src_index++;
-	}
-	str_substr[dst_index] = 0;
-	return (str_substr);
-}
+	if (substrlen == 0 || (start >= ft_strlen(str_src)))
+			return (ft_strdup(""));
+	if (ft_strlen(str_src) < substrlen)
+			substrlen = ft_strlen(str_src);
+	if (ft_strlen(str_src + start) < substrlen)
+			substrlen = ft_strlen(str_src + start);
+	dest = malloc(substrlen * sizeof(char) + 1);
+	if (!dest)
+			return (NULL);
+	while (j < ft_strlen(str_src) && i < substrlen)
+			dest[i++] = str_src[j++];
+	dest[substrlen] = '\0';
+	return (dest);
 
+}
+/*
 char	*ft_strchr(const char *str, int chr)
 {
-	char	*res;
+	const char	*res;
 
+	res = NULL;
 	while (*str != '\0')
 	{
 		if (*str == (char)chr)
 		{
-			res = (char *)str;
-			return (&res[0]);
+			res = str;
+			return ((char *)res);
 		}
 		str++;
 	}
 	if (*str == (char)chr)
 	{
-		return (&(*(char *)str));
+		return ((char *)str);
 	}
 	return (NULL);
 }
+*/
 
 char	*ft_strdup(const char *src)
 {
-	int		src_len;
-	int		index;
-	char	*strdup;
+	int		i;
+	char	*str;
 
-	src_len = 0;
-	index = ft_strlen(src);
-	strdup = (char *)malloc(sizeof(*strdup) * (index + 1));
-	while (src_len < index)
+	i = 0;
+	if (!src)
+		return (NULL);
+	str = malloc((ft_strlen(src) + 1) * sizeof(char));
+	if (!str)
+		return (NULL);
+	while (*src)
 	{
-		strdup[src_len] = src[src_len];
-		src_len++;
+		str[i] = *src;
+		i++;
+		src++;
 	}
-	strdup[src_len] = '\0';
-	return (strdup);
+	str[i] = '\0';
+	return (str);
 }
 
-char	*ft_strjoin(const char *s1, const char *s2)
+/*
+char  *ft_strdup(const char *str)
 {
-	int		index1;
-	int		index2;
-	char	*res;
+	char *tmp;
+	int i;
 
-	index1 = 0;
-	index2 = 0;
-	res = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (res == NULL)
+	if (!str)
 		return (NULL);
-	while (s1[index1] != '\0')
+	tmp = (char *)malloc(sizeof(char) * ft_strlen(str) + 2);
+	if (!tmp[0])
+		return (NULL);
+	i = 0;
+	while (str[i])
 	{
-		res[index1] = s1[index1];
-		index1++;
+		tmp[i] = str[i];
+		i++;	
 	}
-	while (s2[index2] != '\0')
+	tmp[i] = 0;
+	return (tmp);
+}
+*/
+
+char	*ft_strjoin(char *s1, char *s2)
+{
+	char	*str;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	if (!s1)
+		s1 = ft_strdup("");
+	if (!s2)
+		return (NULL);
+	str = malloc((ft_strlen(s1) + ft_strlen(s2) +1) * sizeof(char));
+	if (!str)
+		return (NULL);
+	while (s1[i])
 	{
-		res[index1 + index2] = s2[index2];
-		index2++;
+		str[i] = s1[i];
+		i++;
 	}
-	res[index1 + index2] = '\0';
-	return (res);
+	while (s2[j])
+		str[i++] = s2[j++];
+	str[i] = '\0';
+	free (s1);
+	return (str);
+}
+
+int	search_newline(char *s)
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (1);
+	while (s[i])
+	{
+		if (s[i] == '\n')
+			return (0);
+		i++;
+	}
+	return (1);
 }
