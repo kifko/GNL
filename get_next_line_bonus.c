@@ -14,9 +14,9 @@
 
 char	*get_rest(char *buf)
 {
-	char	*rest;
 	int		i;
 	int		j;
+	char	*rest;
 
 	i = -1;
 	j = 0;
@@ -32,7 +32,7 @@ char	*get_rest(char *buf)
 	if (!rest)
 		return (free(buf), NULL);
 	while (buf[i])
-			rest[j++] = buf[i++];
+		rest[j++] = buf[i++];
 	rest[j] = '\0';
 	return (free(buf), rest);
 }
@@ -62,9 +62,9 @@ char	*read_and_process(int fd, char *buf)
 
 char	*get_next_line(int fd)
 {
+	int				i;
 	static char		*buf[OPEN_MAX];
 	char			*line;
-	int				i;
 
 	if (fd > OPEN_MAX || fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);

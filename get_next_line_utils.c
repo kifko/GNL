@@ -35,14 +35,14 @@ char	*ft_substr(char *str_src, unsigned int start, size_t substrlen)
 	if (substrlen == 0 || (start >= ft_strlen(str_src)))
 		return (ft_strdup(""));
 	if (ft_strlen(str_src) < substrlen)
-			substrlen = ft_strlen(str_src);
+		substrlen = ft_strlen(str_src);
 	if (ft_strlen(str_src + start) < substrlen)
-			substrlen = ft_strlen(str_src + start);
+		substrlen = ft_strlen(str_src + start);
 	dest = malloc(substrlen * sizeof(char) + 1);
 	if (!dest)
 		return (NULL);
 	while (j < ft_strlen(str_src) && i < substrlen)
-			dest[i++] = str_src[j++];
+		dest[i++] = str_src[j++];
 	dest[substrlen] = '\0';
 	return (dest);
 }

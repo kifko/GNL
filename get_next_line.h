@@ -24,13 +24,10 @@
 
 size_t	ft_strlen(const char *str);
 char	*ft_substr(char *str_src,
-			unsigned int start, size_t substr_len);
-char	*ft_strchr(const char *str, int chr);
+			unsigned int start, size_t substrlen);
 char	*ft_strdup(const char *src);
 char	*ft_strjoin(char *s1, char *s2);
 char	*get_next_line(int fd);
-char	*return_line(char *buf);
-char	*save_rest(char *buf);
 int		search_newline(char *s);
 
 #endif

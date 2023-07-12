@@ -14,9 +14,9 @@
 
 char	*get_rest(char *buf)
 {
-	char	*rest;
 	int		i;
 	int		j;
+	char	*rest;
 
 	i = -1;
 	j = 0;
@@ -62,9 +62,9 @@ char	*read_and_process(int fd, char *buf)
 
 char	*get_next_line(int fd)
 {
+	int				i;
 	static char		*buf;
 	char			*line;
-	int				i;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -84,3 +84,30 @@ char	*get_next_line(int fd)
 	buf = get_rest(buf);
 	return (line);
 }
+/*
+int main()
+{
+    int fd;
+    char *line;
+
+    // Abre el archivo de texto para lectura
+    fd = open("archivo.txt", O_RDONLY);
+    if (fd < 0)
+    {
+        perror("Error al abrir el archivo");
+        return 1;
+    }
+
+    // Lee líneas del archivo hasta el final
+    while ((line = get_next_line(fd)) != NULL)
+    {
+        printf("%s\n", line);
+        free(line); // Libera la memoria asignada por get_next_line
+    }
+
+    // Cierra el archivo
+    close(fd);
+
+    return 0;
+}
+*/

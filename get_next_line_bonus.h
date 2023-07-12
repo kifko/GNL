@@ -13,9 +13,9 @@
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
 
-# include <stdio.h>
-# include <unistd.h>
 # include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h>
 # include <fcntl.h>
 # include <limits.h>
 
@@ -23,13 +23,12 @@
 #  define BUFFER_SIZE 5
 # endif
 
-char	*get_next_line(int fd);
-char	*return_line(char *buf);
-char	*save_rest(char *buf);
-char	*ft_strdup(const char *s1);
-int		search_newline(char *s);
-char	*ft_strjoin(char *s1, char *s2);
 size_t	ft_strlen(const char *str);
-char	*ft_substr(char *s, unsigned int start, size_t len);
+char	*ft_substr(char *s, 
+			unsigned int start, size_t substrlen);
+char	*ft_strdup(const char *s1);
+char	*ft_strjoin(char *s1, char *s2);
+char	*get_next_line(int fd);
+int		search_newline(char *s);
 
 #endif
