@@ -6,7 +6,7 @@
 /*   By: festeve- <festeve-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 11:08:47 by festeve-          #+#    #+#             */
-/*   Updated: 2023/06/06 17:20:23 by festeve-         ###   ########.fr       */
+/*   Updated: 2023/12/11 16:20:06 by festeve-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,19 +84,16 @@ char	*get_next_line(int fd)
 	buf = get_rest(buf);
 	return (line);
 }
+
 /*
-int main()
+int main(int argc, char **argv)
 {
     int fd;
-    char *line;
+	(void)	argc;
+	char	*line;
 
     // Abre el archivo de texto para lectura
-    fd = open("archivo.txt", O_RDONLY);
-    if (fd < 0)
-    {
-        perror("Error al abrir el archivo");
-        return 1;
-    }
+    fd = open(argv[1], O_RDONLY);
 
     // Lee líneas del archivo hasta el final
     while ((line = get_next_line(fd)) != NULL)
@@ -104,7 +101,6 @@ int main()
         printf("%s\n", line);
         free(line); // Libera la memoria asignada por get_next_line
     }
-
     // Cierra el archivo
     close(fd);
 

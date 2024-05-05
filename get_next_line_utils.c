@@ -6,7 +6,7 @@
 /*   By: festeve- <festeve-@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:32:17 by festeve-          #+#    #+#             */
-/*   Updated: 2023/06/02 13:18:59 by festeve-         ###   ########.fr       */
+/*   Updated: 2023/12/10 23:14:49 by festeve-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ char	*ft_substr(char *str_src, unsigned int start, size_t substrlen)
 	j = start;
 	if (!str_src)
 		return (NULL);
-	if (substrlen == 0 || (start >= ft_strlen(str_src)))
+	if (substrlen == i || (j >= ft_strlen(str_src)))
 		return (ft_strdup(""));
 	if (ft_strlen(str_src) < substrlen)
 		substrlen = ft_strlen(str_src);
-	if (ft_strlen(str_src + start) < substrlen)
-		substrlen = ft_strlen(str_src + start);
+	if (ft_strlen(str_src + j) < substrlen)
+		substrlen = ft_strlen(str_src + j);
 	dest = malloc(substrlen * sizeof(char) + 1);
 	if (!dest)
 		return (NULL);
@@ -70,9 +70,9 @@ char	*ft_strdup(const char *src)
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	char	*str;
 	int		i;
 	int		j;
+	char	*str;
 
 	i = 0;
 	j = 0;
@@ -80,7 +80,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		s1 = ft_strdup("");
 	if (!s2)
 		return (NULL);
-	str = malloc((ft_strlen(s1) + ft_strlen(s2) +1) * sizeof(char));
+	str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
 	while (s1[i])

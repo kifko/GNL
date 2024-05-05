@@ -34,12 +34,12 @@ char	*ft_substr(char *str_src, unsigned int start, size_t substrlen)
 	j = start;
 	if (!str_src)
 		return (NULL);
-	if (substrlen == 0 || (start >= ft_strlen(str_src)))
+	if (substrlen == 0 || (j >= ft_strlen(str_src)))
 		return (ft_strdup(""));
 	if (ft_strlen(str_src) < substrlen)
 		substrlen = ft_strlen(str_src);
-	if (ft_strlen(str_src + start) < substrlen)
-		substrlen = ft_strlen(str_src + start);
+	if (ft_strlen(str_src + j) < substrlen)
+		substrlen = ft_strlen(str_src + j);
 	dest = malloc(substrlen * sizeof(char) + 1);
 	if (!dest)
 		return (NULL);
@@ -72,9 +72,9 @@ char	*ft_strdup(const char *src)
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	char	*str;
 	int		i;
 	int		j;
+	char	*str;
 
 	i = 0;
 	j = 0;

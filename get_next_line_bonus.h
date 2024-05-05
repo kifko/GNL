@@ -24,7 +24,7 @@
 # endif
 
 size_t	ft_strlen(const char *str);
-char	*ft_substr(char *s, 
+char	*ft_substr(char *str_src,
 			unsigned int start, size_t substrlen);
 char	*ft_strdup(const char *s1);
 char	*ft_strjoin(char *s1, char *s2);
